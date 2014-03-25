@@ -4,6 +4,7 @@ var logfmt = require("logfmt");
 var app = express();
 
 app.use(logfmt.requestLogger());
+app.use(express.static(process.cwd() + '/public'));
 
 app.get('/', function(req, res) {
   res.send('Hello World!');
