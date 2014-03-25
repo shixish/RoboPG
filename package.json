@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/shixish/RoboPG/issues"
   },
-  "homepage": "https://github.com/shixish/RoboPG"
+  "homepage": "https://github.com/shixish/RoboPG",
+  "dependencies": {
+    "logfmt": "~1.1.1",
+    "express": "~3.5.0"
+  }
 }
