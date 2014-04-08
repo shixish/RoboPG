@@ -1,8 +1,8 @@
 // web.js
 var express = require("express");
 var logfmt = require("logfmt");
-var app = express();
 
+var app = express();
 app.use(logfmt.requestLogger());
 app.use(express.static(process.cwd() + '/public'));
 
