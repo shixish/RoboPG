@@ -70,48 +70,91 @@ var extend = function(protoProps, staticProps) {
 // var a = new Arm();
 // console.log(a);
 
-function Robot(){
+var dummy_data = {
+	head: {
+		hp: 100,
+		skill: {
+			name: 'charge',
+			cost: -50,
+			dmg: 0
+		}
+	},
+	rarm: {
+		hp: 10,
+		skill: {
+			name: 'axe',
+			cost: 15,
+			dmg: 15
+		}
+	},
+	larm: {
+		hp: 10,
+		skill: {
+			name: 'laser',
+			cost: 50,
+			dmg: 50
+		}
+	},
+	body: {
+		hp: 25,
+		skill: {
+			name: 'slam',
+			cost: 100,
+			dmg: 80
+		},
+		speed: -5
+	},
+	legs: {
+		hp: 50,
+		speed: 10
+	}
+};
+
+
+function Robot(parts){
 	//var parts = [new Head(), new Arm(), new Arm(), new Leg(), new Leg()];
+	/*
 	var head = new Head(),
 		lArm = new Arm(),
 		rArm = new Arm(),
-		torso = new Torso(),
+		body = new body(),
 		Legs = new Legs();
-
-
-	//robot actions
-	this.attack = function(){
-		
-	}
-
-	this.block = function(){
-
-	}
-
-
-	//component parts
-	function Head(){
-		var hp = new HealthBar();
-	}
-	function Arm(){
-
-	}
-	function Torso(){
-
-	}
-	function Legs(){
-
-	}
-
+	*/
+	
+	this.Head = parts.head;
+	this.Larm = parts.larm;
+	this.Rarm = parts.rarm;
+	this.Legs = parts.legs;
+	
+	this.Skills = [
+		parts.larm.skill,
+		parts.rarm.skill,
+		parts.body.skill,
+		parts.head.skill	
+	];	
+	
+	//total robot health
+	var total_hp = 0;
+	_.each(parts, function(part){
+		total_hp+=Number(part.hp);
+	});
+	this.total_hp = total_hp;
+	
+	//draw robot onto screen
+	this.Render = function(element){
+		$(element).html(this.total_hp);
+	};
 }
 
 function Game(){//maintains game state
 	var robotA = new Robot(),
 		robotB = new Robot();
-	//robotA.attack(robotB.head());
 }
 
 
 (function($){
-	$('#test').html('Hello World!');
+	//$('#test').html('Hello World!');
+	var Bob = new Robot(dummy_data);
+	Bob.Render($('#test'));
+	
 })(jQuery);
